@@ -1,39 +1,52 @@
 pragma solidity ^0.5.0;
-
-import "@openzeppelin/contracts-ethereum-package/contracts/GSN/GSNRecipient.sol";
+// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+// import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/GSN/GSNRecipientERC20Fee.sol";
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 
-contract Counter is Initializable, GSNRecipient {
+
+contract Counter is Initializable, GSNRecipientERC20Fee {
   //it keeps a count to demonstrate stage changes
   uint private count;
   address private _owner;
 
   function initialize(uint num) public initializer {
-    GSNRecipient.initialize();
+    
+    GSNRecipientERC20Fee.initialize("token","tkn");
     _owner = _msgSender();
     count = num;
+   _mint(msg.Sender(), 10000 * (10 ** uint256(decimals()))); 
   }
+  // contract Counter is ERC20, ERC20Detailed, GSNRecipient {
+  // uint private count;
+  // address private _owner;
+    
+  //   constructor (uint num) public ERC20Detailed("SimpleToken", "SIM", 18) {
+  //         _owner = _msgSender();
+  //   count = num;
+  //       _mint(msg.Sender(), 10000 * (10 ** uint256(decimals())));
+  //   }
 
   // accept all requests
-  function acceptRelayedCall(
-    address,
-    address,
-    bytes calldata,
-    uint256,
-    uint256,
-    uint256,
-    uint256,
-    bytes calldata,
-    uint256
-    ) external view returns (uint256, bytes memory) {
-    return _approveRelayedCall();
-  }
+  // function acceptRelayedCall(
+  //   address,
+  //   address,
+  //   bytes calldata,
+  //   uint256,
+  //   uint256,
+  //   uint256,
+  //   uint256,
+  //   bytes calldata,
+  //   uint256
+  //   ) external view returns (uint256, bytes memory) {
+  //   return _approveRelayedCall();
+  // }
 
-  function _preRelayedCall(bytes memory context) internal returns (bytes32) {
-  }
+  // function _preRelayedCall(bytes memory context) internal returns (bytes32) {
+  // }
 
-  function _postRelayedCall(bytes memory context, bool, uint256 actualCharge, bytes32) internal {
-  }
+  // function _postRelayedCall(bytes memory context, bool, uint256 actualCharge, bytes32) internal {
+  // }
 
   function owner() public view returns (address) {
     return _owner;

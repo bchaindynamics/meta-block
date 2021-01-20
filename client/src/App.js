@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { useWeb3Network, useEphemeralKey, useWeb3Injected } from '@openzeppelin/network/react';
 
-import Header from './components/Header/index.js';
-import Footer from './components/Footer/index.js';
-import Hero from './components/Hero/index.js';
 import Web3Info from './components/Web3Info/index.js';
 import Counter from './components/Counter/index.js';
 
@@ -64,19 +61,16 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Header />
-      <Hero />
       <div className={styles.wrapper}>
         {!context.lib && renderNoWeb3()}
         <div className={styles.contracts}>
-          <h1>BUIDL with GSN Kit!</h1>
+          <h1>Counter Dapp!</h1>
           <div className={styles.widgets}>
             <Web3Info title="Web3 Provider" context={context} />
             <Counter {...context} JSON={counterJSON} instance={counterInstance} deployedNetwork={deployedNetwork} />
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
