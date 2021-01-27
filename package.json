@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/OpenZeppelin/starter-kit-gsn#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/contracts": "^2.5.1",
     "@openzeppelin/contracts-ethereum-package": "^2.4.0",
     "@openzeppelin/contracts-upgradeable": "^3.3.0",
     "@openzeppelin/upgrades": "^2.6.0",
