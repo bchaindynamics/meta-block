@@ -1,12 +1,13 @@
 pragma solidity ^0.5.0;
-// import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-// import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
+ import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
+ import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20Detailed.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/GSN/GSNRecipientERC20Fee.sol";
+//import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 
 
-contract Counter is Initializable, GSNRecipientERC20Fee {
-  //it keeps a count to demonstrate stage changes
+contract Counter is Initializable, GSNRecipientERC20Fee ,ERC20,ERC20Detailed {
+  //it keeps a count to demonstrate stage changesERC20
   uint private count;
   address private _owner;
 
@@ -15,7 +16,7 @@ contract Counter is Initializable, GSNRecipientERC20Fee {
     GSNRecipientERC20Fee.initialize("token","tkn");
     _owner = _msgSender();
     count = num;
-   _mint(msg.Sender(), 10000 * (10 ** uint256(decimals()))); 
+    _mint(msg.sender, 1000000 * (10 ** uint256(decimals())));
   }
   // contract Counter is ERC20, ERC20Detailed, GSNRecipient {
   // uint private count;
