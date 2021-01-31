@@ -19,11 +19,11 @@ struct Candidate {
     event votedEvent (
         uint indexed _candidateId
     );
-  function initialize(uint num) public initializer {
+  function initialize() public initializer {
     
     GSNRecipientERC20Fee.initialize("token","tkn");
     _owner = _msgSender();
-    count = num;
+    
     _mint(msg.sender, 1000000 * (10 ** uint256(decimals())));
             addCandidate("Candidate 1");
         addCandidate("Candidate 2");

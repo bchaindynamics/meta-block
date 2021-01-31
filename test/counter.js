@@ -17,13 +17,13 @@ contract("counter", async ([_, owner, ...otherAccounts]) => {
     (await counter.owner()).should.equal(owner);
   });
 
-  it("should have proper default value", async () => {
-    (await counter.getCounter()).should.bignumber.equal(value);
-  });
+  // it("should have proper default value", async () => {
+  //   (await counter.getCounter()).should.bignumber.equal(value);
+  // });
 
-  it("should increase counter value", async () => {
-    await counter.increaseCounter(add);
-    (await counter.getCounter()).should.bignumber.equal(value.add(add));
-  });
+  // it("should increase counter value", async () => {
+  //   await counter.increaseCounter(add);
+  //   (await counter.getCounter()).should.bignumber.equal(value.add(add));
+  // });
 
 });

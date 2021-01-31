@@ -69,7 +69,7 @@ export default function Counter(props) {
   const [candidate1Votes, setCandidate1Votes] = useState();
   const [candidate2Votes, setCandidate2Votes] = useState();
   const [winner, setWinner] = useState('');
-  const [loading, setLoading] = useState(true);
+
   const increase = async () => {
     try {
       if (!sending) {
@@ -82,14 +82,12 @@ export default function Counter(props) {
         const _candidate2Votes = Number(_candidate2.voteCount);
         setCandidate2Votes(_candidate2Votes);
 
-        // const receipt = await getTransactionReceipt(lib, tx.transactionHash);
-        // setTransactionHash(receipt.transactionHash);s
         if (_candidate1Votes > _candidate2Votes) setWinner('Candidate 1');
         else if (_candidate1Votes < _candidate2Votes) setWinner('Candidate 2');
         else setWinner('No one');
         // getCount();
         getDeploymentAndFunds();
-        setLoading(false);
+
         setSending(false);
       }
     } catch (e) {
@@ -102,13 +100,15 @@ export default function Counter(props) {
     try {
       if (!sending) {
         setSending(true);
-        setLoading(true);
+
         const receipt = await instance.methods
           .vote(candidate)
           .send({ from: accounts })
           .on('transactionHash', hash => {
             console.log('Transaction Successful', hash);
           });
+        const receipt = await getTransactionReceipt(lib, receipt.transactionHash);
+
         setTransactionHash(receipt.transactionHash);
 
         //getCount();
@@ -184,7 +184,7 @@ export default function Counter(props) {
   //     </div>
   //   );
   // }
-  if (!loading) {
+  if (!sending) {
     content = (
       <Body castVote={castVote} winner={winner} candidate1Votes={candidate1Votes} candidate2Votes={candidate2Votes} />
     );
