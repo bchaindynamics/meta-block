@@ -1,20 +1,20 @@
 {
   "manifestVersion": "2.2",
   "contracts": {
-    "Counter": "Counter",
-    "MyNFT": "MyNFT"
+    "Counters": "Counters"
   },
   "dependencies": {},
   "name": "starter-kit-gsn",
   "version": "1.0.2",
   "compiler": {
-    "manager": "truffle",
+    "manager": "openzeppelin",
     "compilerSettings": {
       "optimizer": {
         "enabled": false,
         "runs": "200"
       }
-    }
+    },
+    "solcVersion": "0.5.17"
   },
   "telemetryOptIn": false
 }
